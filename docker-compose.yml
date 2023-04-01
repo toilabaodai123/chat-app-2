@@ -5,9 +5,17 @@ services:
     build: ./docker/postgresql/.
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: postgresql
     ports:
       - 5432:5432
     volumes:
       - ./docker/postgresql/database_data:/var/lib/postgresql/data
+  
+  backend:
+    container_name: backend
+    build: ./app/back-end/.
+    ports:
+      - 3000:3000
+
     
