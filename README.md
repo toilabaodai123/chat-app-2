@@ -1,1 +1,5 @@
-a
+#Instructions
+
+```
+docker-compose up --build
+```
