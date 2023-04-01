@@ -31,6 +31,7 @@ services:
     volumes:
       - ./docker/pgadmin/data:/var/lib/pgadmin
     environment:
+      PGADMIN_DEFAULT_EMAIL: root@gmail.com
       PGADMIN_DEFAULT_PASSWORD: 123456
   
 
