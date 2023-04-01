@@ -1,2 +1,2 @@
 /app/back-end/dist
-/docker/database_data
+/docker/postgresql/database_data
