@@ -1,5 +1,16 @@
 version: '3'
 services:
+  backend:
+    container_name: backend
+    build: ./app/back-end/.
+    ports:
+      - 3001:3000
+    tty: true
+    depends_on:
+      - database
+    volumes:
+      - ./app/back-end/:/var/www/app
+
   database:
     container_name: database
     build: ./docker/postgresql/.
@@ -12,11 +23,17 @@ services:
     volumes:
       - ./docker/postgresql/database_data:/var/lib/postgresql/data
   
-  backend:
-    container_name: backend
-    build: ./app/back-end/.
+  database_workbench:
+    container_name: database_workbench
+    build: ./app/pgadmin/.
     ports:
-      - 3000:3000
-    tty: true
+      - 5555:80
+    volumes:
+      - ./docker/pgadmin/data:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: 123456
+  
+
+  
 
     
