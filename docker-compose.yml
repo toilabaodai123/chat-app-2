@@ -16,7 +16,11 @@ services:
     container_name: backend
     build: ./app/back-end/.
     ports:
-      - 3000:3000
+      - 3001:3000
     tty: true
+    depends_on:
+      - database
+    volumes:
+      - ./app/back-end/:/var/www/app
 
     
