@@ -1,13 +1,39 @@
 version: '3'
 services:
+  backend:
+    container_name: backend
+    build: ./app/back-end/.
+    ports:
+      - 3001:3000
+    tty: true
+    depends_on:
+      - database
+    volumes:
+      - ./app/back-end/:/var/www/app
+
   database:
     container_name: database
     build: ./docker/postgresql/.
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: postgresql
     ports:
       - 5432:5432
     volumes:
       - ./docker/postgresql/database_data:/var/lib/postgresql/data
+  
+  database_workbench:
+    container_name: database_workbench
+    build: ./app/pgadmin/.
+    ports:
+      - 5555:80
+    volumes:
+      - ./docker/pgadmin/data:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: 123456
+  
+
+  
+
     
