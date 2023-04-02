@@ -1,5 +1,14 @@
 version: '3'
 services:
+  frontend:
+    container_name: frontend
+    build: ./app/front-end/.
+    ports:
+      - 3002:3000
+    tty: true
+    volumes:
+      - ./app/back-end/:/var/www/app
+      
   backend:
     container_name: backend
     build: ./app/back-end/.

@@ -3,3 +3,7 @@
 
 /docker/pgadmin/data
 /docker/postgresql/database_data
+
+**/.env
+**/node_modules
+
