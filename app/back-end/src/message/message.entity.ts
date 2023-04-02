@@ -19,6 +19,9 @@ export class Message {
 
   @Column({ type: 'bigint' })
   created_at: number;
+}
 
-  public static ENTITY_TYPE = "Message";
+export enum EntityType {
+  User = "USER",
+  Group = "GROUP"
 }

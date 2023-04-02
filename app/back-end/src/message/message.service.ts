@@ -16,13 +16,13 @@ export class MessageService {
         return this.messageRepository.find();
     }
 
-    async saveMessage(createMessageDTO: CreateMessageDTO):Promise<Message> {
+    async saveMessage(createMessageDTO: CreateMessageDTO,req):Promise<Message> {
         const message = new Message();
         message.content = createMessageDTO.content;
         message.created_at = Date.now();
-        message.entity_id = -1;
-        message.entity_type = Message.ENTITY_TYPE;
-        message.user_id = -1;
+        message.entity_id = createMessageDTO.entity_id;
+        message.entity_type = createMessageDTO.entity_type;
+        message.user_id = req.user.sub;
         await this.messageRepository.save(message);
         return message;
     }

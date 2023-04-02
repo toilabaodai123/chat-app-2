@@ -1,7 +1,8 @@
-import { Controller, Get ,Post ,Body, Param, UseFilters, NotFoundException, ParseIntPipe} from '@nestjs/common';
+import { Controller, Get ,Post ,Body, Param, ParseIntPipe, UseGuards, Request} from '@nestjs/common';
 import { Message } from './message.entity';
 import { MessageService } from './message.service';
 import { CreateMessageDTO } from './dto/createmessage.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('message')
 export class MessageController {
@@ -12,9 +13,10 @@ export class MessageController {
         return this.messageService.getMessages();
     }
 
+    @UseGuards(AuthGuard)
     @Post()
-    saveMessage(@Body() createMessageDTO: CreateMessageDTO):Promise<Message>{
-        return this.messageService.saveMessage(createMessageDTO);
+    saveMessage(@Body() createMessageDTO: CreateMessageDTO, @Request() req):Promise<Message>{
+        return this.messageService.saveMessage(createMessageDTO,req);
     }
 
     @Get('/:id')
