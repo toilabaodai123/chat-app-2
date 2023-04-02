@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Message } from './message.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,6 +24,16 @@ export class MessageService {
         message.entity_type = Message.ENTITY_TYPE;
         message.user_id = -1;
         await this.messageRepository.save(message);
+        return message;
+    }
+
+    async findOne(id:number):Promise<Message|null>{
+        const message = await this.messageRepository.findOneBy({id});
+        
+        if(!message){
+            throw new NotFoundException(`Message with "${id}" not found`);
+        }
+
         return message;
     }
 }
