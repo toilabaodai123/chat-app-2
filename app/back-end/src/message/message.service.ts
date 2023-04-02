@@ -21,7 +21,7 @@ export class MessageService {
         message.content = createMessageDTO.content;
         message.created_at = Date.now();
         message.entity_id = -1;
-        message.entity_type = "";
+        message.entity_type = Message.ENTITY_TYPE;
         message.user_id = -1;
         await this.messageRepository.save(message);
         return message;
