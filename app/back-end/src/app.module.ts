@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [UserModule,
@@ -17,6 +18,7 @@ import { DataSource } from 'typeorm';
       autoLoadEntities:true ,
       synchronize: true,
     }),
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
