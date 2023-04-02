@@ -4,10 +4,10 @@ services:
     container_name: frontend
     build: ./app/front-end/.
     ports:
-      - 3002:3000
+      - 3002:5173
     tty: true
     volumes:
-      - ./app/back-end/:/var/www/app
+      - ./app/front-end/:/var/www/app
       
   backend:
     container_name: backend
