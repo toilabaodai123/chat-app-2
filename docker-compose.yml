@@ -4,7 +4,7 @@ services:
     container_name: frontend
     build: ./app/front-end/.
     ports:
-      - 3002:5173
+      - 3002:6666
     tty: true
     volumes:
       - ./app/front-end/:/var/www/app

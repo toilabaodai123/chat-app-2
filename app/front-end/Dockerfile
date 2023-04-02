@@ -6,4 +6,4 @@ WORKDIR /var/www
 RUN mkdir -p app
 
 WORKDIR /var/www/app
-CMD npm run dev
+CMD npm install && npm run dev --host
