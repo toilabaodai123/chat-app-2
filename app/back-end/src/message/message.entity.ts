@@ -17,6 +17,6 @@ export class Message {
   @Column()
   user_id: number;
 
-  @Column({ type: 'timestamptz' })
-  created_at: Date;
+  @Column({ type: 'bigint' })
+  created_at: number;
 }
